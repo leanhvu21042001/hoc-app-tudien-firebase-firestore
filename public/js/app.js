@@ -28,9 +28,7 @@ function renderListWords(doc) {
   word.addEventListener('click', function (e) {
     e.preventDefault();
     let id = e.target.parentElement.getAttribute('data-id');
-    console.log(id);
-    console.log(e.target.textContent);
-    const flag = confirm('ban muon thay doi khong');
+    const flag = confirm('Bạn mốn thay đổi không ?');
     if (flag) {
       const newWord = '';
       const newMean = '';
