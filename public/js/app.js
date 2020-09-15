@@ -32,8 +32,14 @@ function renderListWords(doc) {
     console.log(e.target.textContent);
     const flag = confirm('ban muon thay doi khong');
     if (flag) {
-      const newWord = prompt('Nhập từ mới: ');
-      const newMean = prompt('Nhập nghĩa từ mới: ');
+      const newWord = '';
+      const newMean = '';
+      do {
+        newWord = prompt('Nhập từ mới: ');
+      } while (newWord.length <= 0);
+      do {
+        newMean = prompt('Nhập nghĩa từ mới: ');
+      } while (newMean.length <= 0);
       console.log(newWord);
       console.log(newMean);
 
