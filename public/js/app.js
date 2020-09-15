@@ -38,8 +38,8 @@ function renderListWords(doc) {
       do {
         newMean = prompt('Nhập nghĩa từ mới: ');
       } while (newMean.length <= 0);
-      console.log(newWord);
-      console.log(newMean);
+      // console.log(newWord);
+      // console.log(newMean);
 
       db.collection('EnglishWords').doc(id).update({
         word: newWord,
