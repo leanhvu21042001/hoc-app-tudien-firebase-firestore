@@ -30,10 +30,14 @@ function renderListWords(doc) {
     let id = e.target.parentElement.getAttribute('data-id');
     const flag = confirm('Bạn mốn thay đổi không ?');
     if (flag) {
-      const newWord = '';
-      const newMean = '';
-      newWord = prompt('Nhập từ mới: ');
-      newMean = prompt('Nhập nghĩa từ mới: ');
+      let newWord = '';
+      let newMean = '';
+      do {
+        newWord = prompt('Nhập từ mới: ');
+      } while (newWord.length <= 0);
+      do {
+        newMean = prompt('Nhập nghĩa từ mới: ');
+      } while (newMean.length <= 0);
       console.log(newWord);
       console.log(newMean);
 
