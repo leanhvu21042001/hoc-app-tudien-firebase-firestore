@@ -4,7 +4,7 @@
  * 15/09/2020
  */
 header {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 main {
   margin-top: 50px;
@@ -16,6 +16,7 @@ main {
 ul{
   list-style-type: none;
   padding: 0;
+  margin-top: 15px;
 }
 li {
   display: flex;

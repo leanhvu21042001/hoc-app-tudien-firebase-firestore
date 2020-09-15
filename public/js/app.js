@@ -5,6 +5,10 @@
  */
 const listGroup = document.querySelector('.word-list');
 const formAddNewWord = document.querySelector('#addNewWord');
+let newWord = '';
+let newMean = '';
+let flag = false;
+// create element, change contents, delete element
 function renderListWords(doc) {
   let li = document.createElement('li');
   let word = document.createElement('span');
@@ -29,8 +33,29 @@ function renderListWords(doc) {
   cross.addEventListener('click', function (e) {
     e.stopPropagation();
     let id = e.target.parentElement.getAttribute('data-id');
-    console.log(id);
     db.collection('EnglishWords').doc(id).delete();
+  });
+  li.addEventListener('click', function (e) {
+    e.preventDefault();
+    // khai báo biến
+    flag = confirm('Bạn mốn thay đổi không ?');
+    let id = e.target.parentElement.getAttribute('data-id');
+    console.log(id);
+    console.log(flag);
+    // nhap newword va newmean
+    if (flag) {
+      do {
+        newWord = prompt('Nhập từ mới: ');
+      } while (newWord.length <= 0);
+      do {
+        newMean = prompt('Nhập nghĩa từ mới: ');
+      } while (newMean.length <= 0);
+      
+      db.collection('EnglishWords').doc(id).update({
+        word: newWord,
+        mean: newMean
+      });
+    }
   });
 }
 
@@ -41,15 +66,14 @@ formAddNewWord.addEventListener('submit', function (event) {
     word: formAddNewWord.word.value,
     mean: formAddNewWord.mean.value
   });
-  console.log(formAddNewWord.word.value);
-  console.log(formAddNewWord.mean.value);
+  // console.log(formAddNewWord.word.value);
+  // console.log(formAddNewWord.mean.value);
   formAddNewWord.word.value = '';
   formAddNewWord.mean.value = '';
 });
 
 // real-time listener
 db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
-
   let changes = snapshot.docChanges();
   // xóa sẽ xóa cái hiện tại nếu không sẽ tải lại danh sách
   changes.forEach(change => {
@@ -60,46 +84,18 @@ db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
       listGroup.removeChild(li);
     }
   });
-
-  // change word
-  const wordMean = document.querySelectorAll('.word-mean');
-  wordMean.forEach(element => {
-    element.addEventListener('click', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-      // khai báo biến
-      const flag = confirm('Bạn mốn thay đổi không ?');
-      let id = e.target.parentElement.getAttribute('data-id');
-      let newWord = '';
-      let newMean = '';
-      // kiểm tra xác nhận thay đổi
+  const wordList = document.querySelectorAll('.word-list li');
+  wordList.forEach(ele => {
+    ele.addEventListener('click', function (e) {
+      // console.log(this.children[0].textContent)
+      // console.log(this.children[1].textContent)
+      // console.log(flag);
+      // console.log(newWord);
+      // console.log(newMean);
       if (flag) {
-        do {
-          newWord = prompt('Nhập từ mới: ');
-        } while (newWord.length <= 0);
-        do {
-          newMean = prompt('Nhập nghĩa từ mới: ');
-        } while (newMean.length <= 0);
-        // hiển thị dữ liệu mới
-        console.log('New Word: ', newWord);
-        console.log('Mean Word: ', newMean);
-        // dữ liệu hiện tại
-        console.log(this.children[0].textContent);
-        console.log(this.children[1].textContent);
-        console.log(id);
-        // hiển thị hiện tại
         this.children[0].textContent = newWord;
         this.children[1].textContent = newMean;
-        // cập nhập db
-        db.collection('EnglishWords').doc(id).update({
-          word: newWord,
-          mean: newMean
-        });
-        flag = false;
       }
-
-    });
-
-  });
-
+    })
+  })
 });
