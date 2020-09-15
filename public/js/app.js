@@ -59,8 +59,10 @@ formAddNewWord.addEventListener('submit', function (event) {
   formAddNewWord.mean.value = '';
 });
 // real-time listener
-db.collection('EnglishWords').onSnapshot(snapshot => {
+db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
   let changes = snapshot.docChanges();
+  let arr = new Array(changes);
+  console.log(changes)
   changes.forEach(change => {
     if (change.type === 'added') {
       renderListWords(change.doc);
