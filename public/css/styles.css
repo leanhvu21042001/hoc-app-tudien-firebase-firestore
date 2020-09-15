@@ -1,3 +1,8 @@
+/**
+ * Author: Lê Anh Vũ
+ * Theme: bootstrap 4 and code tay :)
+ * 15/09/2020
+ */
 header {
   margin-top: 50px;
 }
@@ -8,50 +13,39 @@ main {
   display: flex;
   justify-content: space-around;
 }
-
-
 ul{
   list-style-type: none;
   padding: 0;
 }
-li{
-  padding: 20px;
+li {
+  display: flex;
+  padding: 10px;
   background: #f6f6f6;
-  font-size: 20px;
+  font-size: 18px;
   color: #555;
   position: relative;
   border-bottom: 1px solid #e6e6e6;
-  height: 46px;
 }
-
-li:nth-child(even){
-  padding: 20px;
-  background: #f2f2f2;
+li >*:nth-child(1) {
+  flex: 25;
 }
-
-li span{
-  display: block;
+li >*:nth-child(1):hover {
+  cursor: pointer;
 }
-
-li span:nth-child(2){
+li >*:nth-child(2) {
+  flex: 25;
   font-size: 16px;
   margin-top: 6px;
   color: #999;
 }
-
-li div{
-  position: absolute;
-  top: 0;
-  right: 0px;
-  background: rgba(255,255,255,0.6);
-  width: 40px;
-  text-align: center;
-  padding: 10px 0;
-  font-weight:  bold;
-  cursor:  pointer;
-}
-.word {
+li >*:nth-child(3) {
+  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.6);
 }
