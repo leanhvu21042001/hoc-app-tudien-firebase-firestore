@@ -94,7 +94,7 @@ db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
           mean: newMean
         });
       }
-      e.preventDefault();
+      e.stopPropagation();
     });
   });
 });
