@@ -65,6 +65,8 @@ db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
   const wordMean = document.querySelectorAll('.word-mean');
   wordMean.forEach(element => {
     element.addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
       // khai báo biến
       const flag = confirm('Bạn mốn thay đổi không ?');
       let id = e.target.parentElement.getAttribute('data-id');
@@ -93,8 +95,11 @@ db.collection('EnglishWords').orderBy('word').onSnapshot(snapshot => {
           word: newWord,
           mean: newMean
         });
+        flag = false;
       }
-      e.stopPropagation();
+
     });
+
   });
+
 });
