@@ -32,12 +32,8 @@ function renderListWords(doc) {
     if (flag) {
       const newWord = '';
       const newMean = '';
-      do {
-        newWord = prompt('Nhập từ mới: ');
-      } while (newWord.length <= 0);
-      do {
-        newMean = prompt('Nhập nghĩa từ mới: ');
-      } while (newMean.length <= 0);
+      newWord = prompt('Nhập từ mới: ');
+      newMean = prompt('Nhập nghĩa từ mới: ');
       console.log(newWord);
       console.log(newMean);
 
